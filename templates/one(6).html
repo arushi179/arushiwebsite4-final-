@@ -66,6 +66,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                flex-wrap: wrap;
             }
     
             .image-5-copy {
@@ -74,21 +75,57 @@
     
             .buttons-container {
                 display: flex;
-                gap: 10px; /* Space between buttons */
+                gap: 2.5px; /* Space between buttons */
             }
     
             .btn {
-                padding: 10px 20px;
-                background-color: #007BFF; /* Change to desired color */
+                padding: 2.5px 5px;
+                background-color: #ff4d94; /* Change to desired color */
                 color: white;
                 text-decoration: none;
                 border-radius: 5px;
                 transition: background-color 0.3s;
+                text-align: center;
+                flex: 1;
+                width: 25%;
+                font-size: 12px;
             }
     
             .btn:hover {
-                background-color: #0056b3; /* Change to desired hover color */
+                background-color: #ff4d94; /* Change to desired hover color */
             }
+             /* Media Queries */
+        @media (max-width: 767px) {
+            .container {
+                flex-direction: row; /* Stack elements vertically on small screens */
+                align-items: stretch;
+            }
+
+            .buttons-container {
+                flex-direction: row; /* Stack buttons vertically on small screens */
+            }
+
+            .btn {
+                width: 25%; /* Make buttons take full width on small screens */
+                padding: 2.5px 3.75px; /* Increase padding for better touch experience */
+            }
+
+            @media (max-width: 479px) {
+            .container {
+                 /* Stack elements vertically on small screens */
+                align-items: stretch;
+            }
+
+            .buttons-container {
+                flex-direction: row; /* Stack buttons vertically on small screens */
+            }
+
+            .btn {
+                width: 25%; /* Make buttons take full width on small screens */
+                padding: 2.5px 3.75px; /* Increase padding for better touch experience */
+            }    
+        }
+    }
         </style>
         
         <a href="#" aria-current="page" class="w-inline-block w--current"><img src="{{ url_for('static', filename='images/Asset-3.png') }}"   loading="lazy" width="132" sizes="(max-width: 479px) 50px, (max-width: 991px) 17vw, (max-width: 1919px) 12vw, 131.98818969726562px" alt="" srcset="{{ url_for('static', filename='images/Asset-3-p-500.png') }} 500w, 
