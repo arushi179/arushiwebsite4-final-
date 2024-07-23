@@ -1,0 +1,16 @@
+click
+colorama
+importlib-metadata
+itsdangerous
+Jinja2
+MarkupSafe
+typing-extensions
+Werkzeug
+Flask
+numpy
+pandas
+zipp
+scikit-learn
+pickle-mixin
+matplotlib
+Flask-Caching

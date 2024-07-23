@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosis Prediction</title>
+    <style>
+        body {
+            background-color: #ffe6f2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff4d94;
+        }
+        img {
+            display: left-;
+            margin: 0 auto 20px;
+            width: 100px; /* Adjust as needed */
+        }
+    </style>
+    <script>
+        function calculateBMI() {
+            let weight = parseFloat(document.getElementById('weight').value);
+            let height = parseFloat(document.getElementById('height').value) / 100;
+            let bmi = weight / (height * height);
+            document.getElementById('BMI').value = bmi.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <title>Image with Buttons</title>
+        <style>
+            .container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+    
+            .image-5-copy {
+                flex-shrink: 0;
+            }
+    
+            .buttons-container {
+                display: flex;
+                gap: 10px; /* Space between buttons */
+            }
+    
+            .btn {
+                padding: 10px 20px;
+                background-color: #007BFF; /* Change to desired color */
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+    
+            .btn:hover {
+                background-color: #0056b3; /* Change to desired hover color */
+            }
+        </style>
+        
+        <a href="#" aria-current="page" class="w-inline-block w--current"><img src="{{ url_for('static', filename='images/Asset-3.png') }}"   loading="lazy" width="132" sizes="(max-width: 479px) 50px, (max-width: 991px) 17vw, (max-width: 1919px) 12vw, 131.98818969726562px" alt="" srcset="{{ url_for('static', filename='images/Asset-3-p-500.png') }} 500w, 
+            {{ url_for('static', filename='images/Asset-3-p-800.png') }} 800w, 
+            {{ url_for('static', filename='images/Asset-3-p-1080.png') }} 1080w, 
+            {{ url_for('static', filename='images/Asset-3.png') }} 1880w"  class="image-5-copy"></a>
+            <div class="buttons-container">
+                <a href="/" class="btn">Go to Home Page</a>
+                <a href="/one" class="btn">होम पेज पर जाएं</a>
+            </div>
+        </div>
+        
+        <h1 style="font-size: 2rem; /* default font size */">
+            Enter the details to get the Diagnosis Prediction
+          </h1>
+          
+          <style>
+            @media screen and (max-width: 991px) {
+              h1 {
+                font-size: 1.05rem; /* Adjust for medium-sized screens */
+              }
+            }
+          
+            @media screen and (max-width: 479px) {
+              h1 {
+                font-size: 0.84rem; /* Adjust for small screens */
+              }
+            }
+          </style>
+
+
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="CAUSE_MENOPAUSE">
+                    CAUSE_MENOPAUSE (How was your menopause achieved, if any):<br>
+                    <span lang="hi">CAUSE_MENOPAUSE (यदि कोई हो, तो आपका रजोनिवृत्ति कैसे प्राप्त हुआ?):</span>
+                </label>
+                <select name="CAUSE_MENOPAUSE" required>
+                    <option value="">Select</option>
+                    <option value="CHEMO-INDUCED">CHEMO-INDUCED (कीमो-प्रेरित)</option>
+                    <option value="HORMONAL TREATMENT">HORMONAL TREATMENT (हार्मोनल उपचार)</option>
+                    <option value="NATURAL">NATURAL (प्राकृतिक)</option>
+                    <option value="HYSTERECTOMY">HYSTERECTOMY (हिस्टेरेक्टॉमी)</option>
+                    <option value="NR">NR (NR)</option>
+                    
+        </select><br>
+
+        <label for="PAST_SURGERY">
+            PAST_SURGERY (Whether you have any records of past surgery):<br>
+            <span lang="hi">PAST_SURGERY (क्या आपके पास कोई पिछले सर्जरी का रिकॉर्ड है?):</span>
+        </label>
+        <select name="PAST_SURGERY" required>
+            <option value="">Select</option>
+            <option value="NR">NR (NR)</option>
+            <option value="YES">YES (हाँ)</option>
+            <option value="NO">NO (नहीं)</option>
+            <!-- Add all possible alternatives here -->
+        </select><br>
+        
+        <label for="WEIGHT (IN KGS)">
+            WEIGHT (IN KGS):<br>
+            <span lang="hi">WEIGHT (किलोग्राम में वजन):</span>
+        </label>
+        <input type="number" step="0.5" id="weight" name="WEIGHT (IN KGS)" required><br>
+        
+        <label for="HEIGHT (IN CMS)">
+            HEIGHT (IN CMS):<br>
+            <span lang="hi">HEIGHT (सेंटीमीटर में ऊँचाई):</span>
+        </label>
+        <input type="number" step="0.5" id="height" name="HEIGHT (IN CMS)" onchange="calculateBMI()" required><br>
+        
+        <label for="STERILISATION (B/L TUBAL LIGATION)">
+            STERILISATION (B/L TUBAL LIGATION):<br>
+            <span lang="hi">STERILISATION (नसबंदी बीएल ट्यूबल बंधाव):</span>
+        </label>
+        <select name="STERILISATION (B/L TUBAL LIGATION)" required>
+            <option value="">Select</option>
+            <option value="YES">YES (हाँ)</option>
+            <option value="NO">NO (नहीं)</option>
+            <!-- Add all possible alternatives here -->
+        </select><br>
+
+        <label for="NON-VEG_FREQUENCY">
+            NON-VEG_FREQUENCY:<br>
+            <span lang="hi">NON-VEG_FREQUENCY (मांसाहारी भोजन की आवृत्ति):</span>
+        </label>
+        <select name="NON-VEG_FREQUENCY" required>
+            <option value="">Select</option>
+            <option value="DAILY">DAILY (रोजाना)</option>
+            <option value="FORTNIGHTLY">FORTNIGHTLY (पखवाड़े में एक बार)</option>
+            <option value="HALF YEARLY">HALF YEARLY (छह महीने में एक बार)</option>
+            <option value="MONTHLY">MONTHLY (मासिक)</option>
+            <option value="NR">NR (NR)</option>
+            <option value="QUARTERLY">QUARTERLY (तिमाही)</option>
+            <option value="THRICE WEEKLY">THRICE WEEKLY (सप्ताह में तीन बार)</option>
+            <option value="TWICE WEEKLY">TWICE WEEKLY (सप्ताह में दो बार)</option>
+            <option value="WEEKLY">WEEKLY (साप्ताहिक)</option>
+            <option value="YEARLY">YEARLY (वार्षिक)</option>
+            <!-- Add all possible alternatives here -->
+        </select><br>
+        
+        <label for="EDUCATION">
+            EDUCATION:<br>
+            <span lang="hi">EDUCATION (शिक्षा):</span>
+        </label>
+        <select name="EDUCATION" required>
+            <option value="">Select</option>
+            <option value="GRADUATE">GRADUATE (स्नातक)</option>
+            <option value="ILLITERATE">ILLITERATE (अनपढ़)</option>
+            <option value="INTERMEDIATE">INTERMEDIATE (मध्यवर्ती)</option>
+            <option value="NR">NR (NR)</option>
+            <option value="POST GRADUATE">POST GRADUATE (स्नातकोत्तर)</option>
+            <option value="PRIMARY">PRIMARY (प्राथमिक)</option>
+            <option value="SECONDARY">SECONDARY (माध्यमिक)</option>
+           
+            <!-- Add all possible alternatives here -->
+        </select><br>
+
+        <label for="PHYSICAL ACTIVITY_GRADE">
+            PHYSICAL ACTIVITY_GRADE:<br>
+            <span lang="hi">PHYSICAL ACTIVITY_GRADE (शारीरिक गतिविधि का स्तर):</span>
+        </label>
+        <select name="PHYSICAL ACTIVITY_GRADE" required>
+            <option value="">Select</option>
+            <option value="MILD">MILD (मध्यम)</option>
+            <option value="MODERATE">MODERATE (मध्यम)</option>
+            <option value="NIL">NIL (कोई नहीं)</option>
+            <option value="NR">NR (NR)</option>
+            <option value="VIGROUS">VIGOROUS (उत्साही)</option>
+            <!-- Add all possible alternatives here -->
+        </select><br>
+        
+        <label for="RBS">
+            RBS (Random Blood Sugar):<br>
+            <span lang="hi">RBS (यादृच्छिक रक्त शर्करा):</span>
+        </label>
+        <input type="number" step="0.01" name="RBS" required><br>
+        
+        <label for="WHR">
+            WHR (Waist-Hip ratio, generally take values ranging from 0.6 to 1.8 for women):<br>
+            <span lang="hi">WHR (कमर-हिप अनुपात, सामान्यतः महिलाओं के लिए 0.6 से 1.8 तक के मान लेता है):</span>
+        </label>
+        <input type="number" step="0.01" name="WHR" required><br>
+        
+        <label for="RESIDENCE">
+            RESIDENCE:<br>
+            <span lang="hi">RESIDENCE (निवास स्थान):</span>
+        </label>
+        <select name="RESIDENCE" required>
+            <option value="">Select</option>
+            <option value="URBAN">URBAN (शहरी)</option>
+            <option value="RURAL">RURAL (ग्रामीण)</option>
+            <option value="NR">NR (NR)</option>
+            <!-- Add all possible alternatives here -->
+        </select><br>
+        
+        <label for="SES">
+            SES (Socio-Economic Status):<br>
+            <span lang="hi">SES (सामाजिक-आर्थिक स्थिति):</span>
+        </label>
+        <select name="SES" required>
+            <option value="">Select</option>
+            <option value="Lower">Lower (निम्न)</option>
+            <option value="Lower Middle">Lower Middle (निम्न मध्य)</option>
+            <option value="Middle">Middle (मध्य)</option>
+            <option value="Upper">Upper (उच्च)</option>
+            <option value="Upper Middle">Upper Middle (उच्च मध्य)</option>
+            <!-- Add all possible alternatives here -->
+        </select><br>
+
+        <label for="SBP">
+            SBP (Systolic Blood Pressure):<br>
+            <span lang="hi">SBP (सिस्टोलिक रक्तदाब):</span>
+        </label>
+        <input type="number" step="0.5" name="SBP" required><br>
+        
+        <label for="WHO_BMI_CAT">
+            WHO_BMI_CAT:<br>
+            <span lang="hi">WHO_BMI_CAT (WHO बीएमआई वर्गीकरण):</span>
+        </label>
+        <select name="WHO_BMI_CAT" required>
+            <option value="">Select</option>
+            <option value="0BESE CLASS I">0BESE CLASS I (मोटापा वर्ग I)</option>
+            <option value="0VERWEIGHT">0VERWEIGHT (अधिक)</option>
+            <option value="NORMAL">NORMAL (सामान्य)</option>
+            <option value="NR">NR (NR)</option>
+            <option value="OBESE CLASS I">OBESE CLASS I (मोटापा वर्ग 1)</option>
+            <option value="OBESE CLASS II">OBESE CLASS II (मोटापा वर्ग 2)</option>
+            <option value="OBESE CLASS III">OBESE CLASS III (मोटापा वर्ग 3)</option>
+            <option value="OVERWEIGHT">OVERWEIGHT (अधिक वजन)</option>
+            <option value="PRE OBESE">PRE OBESE (पूर्ववर्ती मोटापा)</option>
+            <option value="UNDERWEIGHT">UNDERWEIGHT (कम वजन)</option>
+            <!-- Add all possible alternatives here -->
+        </select><br>
+
+        <label for="WAIST_CMS">
+            WAIST_CMS (Measurement of Waist in centimetres, generally ranging from 60 to 120 for women):<br>
+            <span lang="hi">WAIST_CMS (कमर की माप सेंटीमीटर में, सामान्यतः महिलाओं के लिए 60 से 120 तक):</span>
+        </label>
+        <input type="number" step="0.01" name="WAIST_CMS" required><br>
+
+        <label for="ABD_OBESITY">
+            ABD_OBESITY:<br>
+            <span lang="hi">ABD_OBESITY (पेट का मोटापा):</span>
+        </label>
+        <select name="ABD_OBESITY" required>
+            <option value="">Select</option>
+            <option value="#DIV/0!">#DIV/0! (#DIV/0!)</option>
+            <option value="#VALUE!">#VALUE! (#VALUE!)</option>
+            <option value="YES">YES (हाँ)</option>
+            <option value="NO">NO (नहीं)</option>
+            <!-- Add all possible alternatives here -->
+        </select><br>
+
+        <label for="BMI">
+            BMI:<br>
+            <span lang="hi">BMI (शरीर द्रव्यमान सूचकांक):</span>
+        </label>
+        <input type="number" step="0.01" id="BMI" name="BMI" readonly><br>
+
+        <input type="submit" value="Predict"><br>
+        
+        <!-- Button to go to /one -->
+<button onclick="location.href='/one'">
+    <span lang="hi">होम पेज पर जाएं</span>
+  </button>
+  
+  <!-- Button to go to / -->
+  <button onclick="location.href='/'">
+    Go to Home Page
+  </button>
+    </form>
+</body>
+</html>    
